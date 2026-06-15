@@ -105,9 +105,16 @@ export default async function FirmsPage({
                     <div className="h-full rounded-2xl border border-slate-100 bg-white p-5 shadow-sm transition-all duration-200 hover:border-brand-200 hover:shadow-md hover:-translate-y-0.5">
                       <div className="flex items-start justify-between gap-3">
                         <div>
-                          <h3 className="text-sm font-semibold text-slate-900 group-hover:text-brand-700 transition-colors">
-                            {cabinet.name}
-                          </h3>
+                          <div className="flex items-center gap-1.5">
+                            <h3 className="text-sm font-semibold text-slate-900 group-hover:text-brand-700 transition-colors">
+                              {cabinet.name}
+                            </h3>
+                            {cabinet.called && (
+                              <span title={cabinet.called_at ? `Appelé le ${new Date(cabinet.called_at).toLocaleDateString("fr-FR")}` : "Appelé"}>
+                                📞
+                              </span>
+                            )}
+                          </div>
                           <p className="mt-0.5 text-xs text-slate-500">
                             {cabinet.city}{cabinet.region ? ` · ${cabinet.region}` : ""}
                           </p>

@@ -24,6 +24,36 @@ export async function submitLead(data: {
   return {};
 }
 
+export async function markAsCalled(
+  cabinetId: string
+): Promise<{ error?: string }> {
+  const supabase = createClient();
+  const { error } = await supabase
+    .from("cabinets")
+    .update({ called: true, called_at: new Date().toISOString() })
+    .eq("id", cabinetId);
+  if (error) {
+    console.error("markAsCalled:", error.message);
+    return { error: error.message };
+  }
+  return {};
+}
+
+export async function unmarkAsCalled(
+  cabinetId: string
+): Promise<{ error?: string }> {
+  const supabase = createClient();
+  const { error } = await supabase
+    .from("cabinets")
+    .update({ called: false, called_at: null })
+    .eq("id", cabinetId);
+  if (error) {
+    console.error("unmarkAsCalled:", error.message);
+    return { error: error.message };
+  }
+  return {};
+}
+
 export async function submitClaimRequest(data: {
   cabinet_name: string;
   siren?: string;

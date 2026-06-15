@@ -31,6 +31,8 @@ export interface Cabinet {
   weaknesses: string[];
   claimed: boolean;
   claimed_at?: string;
+  called: boolean;
+  called_at?: string;
   source?: string;
   created_at: string;
   updated_at: string;

@@ -17,6 +17,7 @@ import {
 } from "lucide-react";
 import Navbar from "@/components/Navbar";
 import { getCabinetBySlug } from "@/lib/supabase/queries";
+import CallButton from "@/components/ui/CallButton";
 import type { AiMaturityLevel, Cabinet } from "@/types";
 
 // --- helpers ---
@@ -303,6 +304,16 @@ export default async function FirmPage({ params }: { params: { slug: string } })
           <div className="space-y-4">
             <div className="rounded-2xl bg-white border border-slate-100 shadow-sm p-6 flex flex-col items-center">
               <ScoreGauge score={cabinet.ai_score} maturity={cabinet.ai_maturity} />
+            </div>
+
+            {/* CRM — Call */}
+            <div className="rounded-2xl bg-white border border-slate-100 shadow-sm p-5">
+              <h3 className="text-sm font-semibold text-slate-900 mb-3">Suivi commercial</h3>
+              <CallButton
+                cabinetId={cabinet.id}
+                initialCalled={cabinet.called ?? false}
+                calledAt={cabinet.called_at ?? null}
+              />
             </div>
 
             <div className="rounded-2xl bg-gradient-to-br from-brand-600 to-brand-800 p-6 text-white">
