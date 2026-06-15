@@ -313,6 +313,8 @@ export default async function FirmPage({ params }: { params: { slug: string } })
                 cabinetId={cabinet.id}
                 initialCalled={cabinet.called ?? false}
                 calledAt={cabinet.called_at ?? null}
+                initialWrongNumber={cabinet.wrong_number ?? false}
+                initialContactToFind={cabinet.contact_to_find ?? null}
               />
             </div>
 

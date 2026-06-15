@@ -114,6 +114,11 @@ export default async function FirmsPage({
                                 📞
                               </span>
                             )}
+                            {cabinet.wrong_number && (
+                              <span title={cabinet.contact_to_find ? `Contact à trouver : ${cabinet.contact_to_find}` : "Mauvais numéro"}>
+                                ❌
+                              </span>
+                            )}
                           </div>
                           <p className="mt-0.5 text-xs text-slate-500">
                             {cabinet.city}{cabinet.region ? ` · ${cabinet.region}` : ""}

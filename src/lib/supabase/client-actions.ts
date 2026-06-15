@@ -54,6 +54,37 @@ export async function unmarkAsCalled(
   return {};
 }
 
+export async function markAsWrongNumber(
+  cabinetId: string,
+  contactToFind: string
+): Promise<{ error?: string }> {
+  const supabase = createClient();
+  const { error } = await supabase
+    .from("cabinets")
+    .update({ wrong_number: true, contact_to_find: contactToFind || null })
+    .eq("id", cabinetId);
+  if (error) {
+    console.error("markAsWrongNumber:", error.message);
+    return { error: error.message };
+  }
+  return {};
+}
+
+export async function unmarkAsWrongNumber(
+  cabinetId: string
+): Promise<{ error?: string }> {
+  const supabase = createClient();
+  const { error } = await supabase
+    .from("cabinets")
+    .update({ wrong_number: false, contact_to_find: null })
+    .eq("id", cabinetId);
+  if (error) {
+    console.error("unmarkAsWrongNumber:", error.message);
+    return { error: error.message };
+  }
+  return {};
+}
+
 export async function submitClaimRequest(data: {
   cabinet_name: string;
   siren?: string;

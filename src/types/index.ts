@@ -33,6 +33,8 @@ export interface Cabinet {
   claimed_at?: string;
   called: boolean;
   called_at?: string;
+  wrong_number: boolean;
+  contact_to_find?: string | null;
   source?: string;
   created_at: string;
   updated_at: string;
